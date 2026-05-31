@@ -1,0 +1,14 @@
+.box {
+    background-color: white;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 630px;
+    height: 630px;
+}
+
+* {
+    outline: 1px solid red;
+}
