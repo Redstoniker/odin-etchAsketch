@@ -1,48 +1,36 @@
 const container = document.querySelector(".container");
-let divs;
-let removeAllBoxes = () =>{
-    for(div of divs){
-        container.removeChild(div);
+const containerWidth = getComputedStyle(container).getPropertyValue("width");
+let boxes = document.querySelectorAll("#box");
+
+const addNewBoxes = (count = 1, minwidth = "6px") => {
+    for(let i = 0; i<count; i++) {
+        const box = document.createElement("div");
+        box.classList += i+1;
+        box.id += "box";
+        container.appendChild(box);
+        box.style.minWidth = minwidth; 
+    }
+    boxes = document.querySelectorAll("#box");
+}
+const deleteAllBoxes = () => {
+    for (const box of boxes) {
+        box.remove();
     }
 }
 
-let addBoxes = count => {
-     for(let i = 0; i<count; i++){
-        container.appendChild(document.createElement("div"));
+const calcBoxWidth = countPerSide => {
+    let containerWidthNumber = containerWidth.replace("px","");
+    let boxWidth = containerWidthNumber / countPerSide;
+    boxWidth += "px";
+    return boxWidth;
+}
+
+const resetBoxes = countPerSide => {
+    if(0 < countPerSide <= 100){
+        const totalBoxCount = countPerSide ** 2
+        deleteAllBoxes();
+        addNewBoxes(totalBoxCount,calcBoxWidth(countPerSide));
     }
 }
 
-let doWithBoxes = (method, ...params) => {
-    for (const [index, box] of divs.entries()) {
-        method(box, index, params);
-    }
-}
-
-let updateBoxList = () => divs = container.querySelectorAll(".container > div");
-
-let calculateBoxSize = sideLength => Math.floor(630/sideLength);
-
-let setBoxSize = (box,index,params) => {
-    let boxSize = params[0]+"px";
-    box.style.minWidth = boxSize;
-    box.style.maxHidth = boxSize;
-}
-changeContainerSize = (boxSize, sideLength) => {
-    container.style.Width = boxSize*sideLength+"px";
-    container.style.Height = boxSize*sideLength+"px";
-}
-
-let resetBoxesAndCount = sideLength => {
-    if (divs !== undefined) {
-        removeAllBoxes();
-    }
-    addBoxes(sideLength**2);    
-    updateBoxList();
-    doWithBoxes((box) => box.className = "box")
-    let boxSize = calculateBoxSize(sideLength);
-    doWithBoxes(setBoxSize, boxSize);
-
-
-}
-
-resetBoxesAndCount(100);
+resetBoxes(16);

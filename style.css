@@ -1,14 +1,17 @@
-.box {
-    background-color: white;
-}
-
 .container{
+    background-color: yellow;
+    width: 640px;
+    height: 640px;
     display: flex;
     flex-wrap: wrap;
-    width: 630px;
-    height: 630px;
 }
 
-* {
+#box{
+    background-color: blue;
+    flex: auto;
+    min-width: 6px;
+}
+
+*{
     outline: 1px solid red;
 }
