@@ -4,6 +4,7 @@ let boxes = document.querySelectorAll("#box");
 const resetButton = document.querySelector("#newB");
 const clearButton = document.querySelector("#clearB");
 let countPerSide = 16;
+let isColorRandom = false;
 
 const addNewBoxes = (count = 1, minwidth = "6px") => {
     for(let i = 0; i<count; i++) {
@@ -37,7 +38,13 @@ const resetBoxes = () => {
     }
 }
 
-const trigger = e => e.target.style.backgroundColor="black";
+const trigger = e => e.target.style.backgroundColor=color();
+
+const randomColor = () => {
+    const FFFFFF = 16777215;
+    let color = "#"+Math.floor(Math.random()*FFFFFF).toString(16);
+    return color;
+}
 
 function addAllBoxEventListeners () {
     for (const box of boxes){
@@ -54,6 +61,10 @@ function clear (e) {
 }
 
 function newGrid (e) {
+    isColorRandom = false;
+    if (onePercent()) {
+        isColorRandom = true;
+    }
     e.target.style.backgroundColor = "burlywood";
     setTimeout(() => {
         e.target.style.backgroundColor = "";
@@ -63,6 +74,17 @@ function newGrid (e) {
     
 }
 
+function onePercent () {
+    return Math.random()<0.01;
+}
+
+function color () {
+    let returncolor = "black";
+    if(isColorRandom){
+        returncolor = randomColor()
+    }
+    return returncolor;
+}
 
 
 resetBoxes();
