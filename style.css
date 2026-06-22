@@ -7,15 +7,41 @@ body{
     background-color: yellow;
     width: 640px;
     height: 640px;
+    min-height: 640px;
+    min-width: 640px;
     display: flex;
     flex-wrap: wrap;
+    outline: 5px solid black;
 }
+
+.buttons{
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 1 0 0;
+    min-width: 110px;    
+    max-width: 300px;
+}
+
+button{
+    height: 100%;
+    margin: 30px;
+    background-color: blanchedalmond;
+}
+
+.invis{
+    margin: -30px 30px;
+    max-width: 200px;
+    color: white;
+}
+
 
 #box{
     background-color: white;
     flex: auto;
 }
 
-*{
+/* *{
     outline: 1px solid red;
-}
+} */

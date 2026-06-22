@@ -42,4 +42,4 @@ function addAllBoxEventListeners () {
     }
 }
 
-resetBoxes(3);
+resetBoxes(16);
