@@ -30,7 +30,16 @@ const resetBoxes = countPerSide => {
         const totalBoxCount = countPerSide ** 2
         deleteAllBoxes();
         addNewBoxes(totalBoxCount,calcBoxWidth(countPerSide));
+        addAllBoxEventListeners();
     }
 }
 
-resetBoxes(16);
+const trigger = e => e.target.style.backgroundColor="black";
+
+function addAllBoxEventListeners () {
+    for (const box of boxes){
+        box.addEventListener("mouseover",  trigger)
+    }
+}
+
+resetBoxes(3);
