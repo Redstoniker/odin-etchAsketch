@@ -26,7 +26,7 @@ const calcBoxWidth = countPerSide => {
 }
 
 const resetBoxes = countPerSide => {
-    if(0 < countPerSide <= 100){
+    if(0 < countPerSide && countPerSide <= 100){
         const totalBoxCount = countPerSide ** 2
         deleteAllBoxes();
         addNewBoxes(totalBoxCount,calcBoxWidth(countPerSide));
